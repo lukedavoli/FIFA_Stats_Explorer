@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/update.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" integrity="sha512-5fsy+3xG8N/1PV5MIJz9ZsWpkltijBI48gBzQ/Z2eVATePGHOkMIn+xTDHIfTZFVb9GMpflF2wOWItqxAP2oLQ==" crossorigin="anonymous" />
+<title>FSE: Home</title>
+{% endblock %}
+
+{% block body %}
+<h5>Add Player</h5>
+<form id="addPlayerForm">
+    <input id="urlField" type="text" placeholder="futwiz URL"/>
+    <input type="submit" value="Add Player"/>
+</form>
+<p id='requestStatus'></p>
+
+<!-- Javascript -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/update.js') }}"></script>
+{% endblock %} 
