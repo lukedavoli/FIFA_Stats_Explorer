@@ -1,14 +1,13 @@
-from flask import Flask, render_template, request, Response, json
+# external imports
+from flask import render_template, request, Response, json
 import json
-from scrape_fw import scrape_player
-
-app = Flask(__name__)
-
-SECRET_KEY = 'Wales.Golf.Madrid.'
-app.config['SECRET_KEY'] = SECRET_KEY
+# internal imports
+from fse import app
+from fse.scrape_fw import scrape_player
+from fse.models import Player
 
 ##########################
-### FRONT-END REQUESTS ###
+#### FRONT-END ROUTES ####
 ##########################
 
 @app.route('/', methods=['GET'])
@@ -17,7 +16,7 @@ def update():
 
 
 #########################
-### BACK-END REQUESTS ###
+#### REST API ROUTES ####
 #########################
 
 @app.route('/add-player', methods=['POST'])
@@ -27,7 +26,3 @@ def add_player():
     response_data = json.dumps(player)
     response = Response(response_data, status=200, mimetype='application/json')
     return response
-
-
-if __name__ == '__main__':
-    app.run(host="localhost", port=8000, debug=True)
