@@ -1,19 +1,38 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/update.css') }}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" integrity="sha512-5fsy+3xG8N/1PV5MIJz9ZsWpkltijBI48gBzQ/Z2eVATePGHOkMIn+xTDHIfTZFVb9GMpflF2wOWItqxAP2oLQ==" crossorigin="anonymous" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 <title>FSE: Home</title>
 {% endblock %}
 
 {% block body %}
-<h5>Add Player</h5>
-<form id="addPlayerForm">
-    <input id="urlField" type="text" placeholder="futwiz URL"/>
-    <input type="submit" value="Add Player"/>
-</form>
-<p id='requestStatus'></p>
+<div class="row">
+    <div class="col">
+        <!-- SEARCH PLAYERS -->
+    </div>
+</div>
+<div class="row">
+    <div class="mt-3 col">
+        <div class="card text-center">
+            <div class="card-header">Add A New Player</div>
+            <div class="card-body">
+                <form id="addPlayerForm">
+                    <div class="form-group">
+                        <label for="urlField">FUTWIZ url</label>
+                        <input class="form-control" id="urlField" type="text" placeholder="Enter url"/>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Add Player</button>
+                </form>
+            </div>
+            <div class="card-footer">
+                <p id='requestStatus'></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <!-- Javascript -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/update.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
 {% endblock %} 
