@@ -8,27 +8,29 @@ def scrape_player(url):
     page = requests.get(url).text
     soup = BeautifulSoup(page, 'html.parser')
 
-    profile_p1 = soup.find('div', {'class': 'playerprofile-hbar-ttl'})
-    player['name'] = profile_p1.h1.text
-    info = profile_p1.div.text.split(' | ')
-    player['type'] = info[0]
-    player['country'] = info[1]
-    player['club'] = info[2]
-    player['league'] = info[3]
-    
-    player['knownas'] = soup.find('div', {'class': 'card-21-name'}).text
-    player['rating'] = soup.find('div', {'class': 'card-21-rating'}).text
-    player['position'] = soup.find('div', {'class': 'card-21-position'}).text
+    player['info'] = {}
 
-    if player['type'] == 'Non-Inform':
-        player['card_name'] = player['knownas']
+    profile_p1 = soup.find('div', {'class': 'playerprofile-hbar-ttl'})
+    player['info']['full_name'] = profile_p1.h1.text
+    info = profile_p1.div.text.split(' | ')
+    player['info']['type'] = info[0]
+    player['info']['country'] = info[1]
+    player['info']['club'] = info[2]
+    player['info']['league'] = info[3]
+    
+    player['info']['knownas'] = soup.find('div', {'class': 'card-21-name'}).text
+    player['info']['rating'] = soup.find('div', {'class': 'card-21-rating'}).text
+    player['info']['position'] = soup.find('div', {'class': 'card-21-position'}).text
+
+    if player['info']['type'] == 'Non-Inform':
+        player['info']['card_name'] = player['info']['knownas']
     else:
-        player['card_name'] = f"{player['type']} {player['knownas']}"
+        player['info']['card_name'] = f"{player['info']['type']} {player['info']['knownas']}"
 
 
     stats = soup.find('div', {'class': 'playerprofile-stats-data'})
     player['stats_summary'] = {}
-    if player['position'] == 'GK':
+    if player['info']['position'] == 'GK':
         player['stats_summary']['DIV'] = stats.find('div', {'class': 'att1bar'}).text
         player['stats_summary']['HAN'] = stats.find('div', {'class': 'att2bar'}).text
         player['stats_summary']['KIC'] = stats.find('div', {'class': 'att3bar'}).text

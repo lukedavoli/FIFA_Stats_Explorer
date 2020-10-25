@@ -3,8 +3,9 @@ from flask import render_template, request, Response, json
 import json
 # internal imports
 from fse import app
+from fse import dao
 from fse.scrape_fw import scrape_player
-from fse.models import Player
+
 
 ##########################
 #### FRONT-END ROUTES ####
@@ -22,7 +23,8 @@ def update():
 @app.route('/add-player', methods=['POST'])
 def add_player():
     request_data = request.json
-    player = scrape_player(request_data['url'])
-    response_data = json.dumps(player)
+    dict_player = scrape_player(request_data['url'])
+    dao.add_player(dict_player)
+    response_data = json.dumps(dict_player)
     response = Response(response_data, status=200, mimetype='application/json')
     return response
