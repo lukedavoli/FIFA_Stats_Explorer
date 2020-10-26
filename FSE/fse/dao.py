@@ -57,14 +57,30 @@ class Player(db.Model):
         return f"{self.i_card_name}({self.player_id})"
 
 def add_player(json_player):
-    new_player = json_to_dbobject(json_player)
+    new_player = dict_to_dbobject(json_player)
     db.session.add(new_player)
     db.session.commit()
-    json_player = dbobject_to_json(new_player)
+    json_player = dbobject_to_dict(new_player)
     return json_player
 
+def get_players_byname(name):
+    results = db.session.query(Player).filter(Player.i_full_name.like(f'%{name}%')).all()
+    players = []
+    for result in results:
+        player = {
+            'id': result.player_id,
+            'name': result.i_full_name,
+            'type': result.i_type,
+            'club': result.i_club,
+            'country': result.i_country,
+            'position': result.i_position,
+            'rating': result.i_rating
+        }
+        players.append(player)
+    return players
 
-def json_to_dbobject(p):
+
+def dict_to_dbobject(p):
     new_player = Player(i_card_name=p['info']['card_name'],
                         i_full_name=p['info']['full_name'],
                         i_type=p['info']['type'],
@@ -122,7 +138,7 @@ def json_to_dbobject(p):
     return new_player
 
 
-def dbobject_to_json(p):
+def dbobject_to_dict(p):
     j = {}
     j['player_id'] = p.player_id
     

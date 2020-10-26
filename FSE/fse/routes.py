@@ -35,7 +35,6 @@ Returns:
 @app.route('/add-player', methods=['POST'])
 def add_player():
     request_data = request.json
-    
     try:
         dict_player = scrape_player(request_data['url'])
         status = 200
@@ -48,3 +47,14 @@ def add_player():
         print(traceback.format_exc())
     response = Response(response_data, status=status, mimetype='application/json')
     return response
+
+
+@app.route('/players/name/<string:name>', methods=['GET'])
+def get_players_byname(name):
+    players = dao.get_players_byname(name)
+    response_data = json.dumps(players)
+    status = 200
+    response = Response(response_data, status=status, mimetype='application/json')
+    return response
+
+
