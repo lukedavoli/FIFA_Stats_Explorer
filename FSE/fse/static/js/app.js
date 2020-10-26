@@ -1,8 +1,12 @@
-const updateForm = document.getElementById('addPlayerForm');
+const addPlayerForm = document.getElementById('addPlayerForm');
 const urlField = document.getElementById('urlField')
 const requestStatus = document.getElementById('requestStatus');
 
-updateForm.addEventListener('submit', (e) => {
+/**********************************************
+ * POST a URL to the backend to be scraped for
+ * player information and added to the database
+ **********************************************/
+addPlayerForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
     requestStatus.className = "inprogress";
@@ -27,7 +31,7 @@ updateForm.addEventListener('submit', (e) => {
                 requestStatus.innerHTML = "Player added to database!";
             
             }else{ // Bad request arguments
-                var response = JSON.parse(xhr.responseText);
+                var response = xhr.response;
                 console.log(response);
 
                 requestStatus.className = "failed";

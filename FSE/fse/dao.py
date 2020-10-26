@@ -1,7 +1,8 @@
 from fse import db
 
 class Player(db.Model):
-    i_card_name = db.Column(db.String(), unique=True, primary_key=True, nullable=False)
+    player_id = db.Column(db.Integer, nullable=False, unique=True, primary_key=True)
+    i_card_name = db.Column(db.String(), nullable=False)
     i_full_name = db.Column(db.String(100), nullable=False)
     i_type = db.Column(db.String(60), nullable=False)
     i_knownas = db.Column(db.String(50), nullable=False)
@@ -53,12 +54,15 @@ class Player(db.Model):
     igs_volleys = db.Column(db.Integer, nullable=False)
     
     def __repr__(self):
-        return f"{self.i_card_name} ({self.i_rating})"
+        return f"{self.i_card_name}({self.player_id})"
 
 def add_player(json_player):
     new_player = json_to_dbobject(json_player)
     db.session.add(new_player)
     db.session.commit()
+    json_player = dbobject_to_json(new_player)
+    return json_player
+
 
 def json_to_dbobject(p):
     new_player = Player(i_card_name=p['info']['card_name'],
@@ -116,3 +120,69 @@ def json_to_dbobject(p):
         new_player.ss_SHO = p['stats_summary']['SHO']
     
     return new_player
+
+
+def dbobject_to_json(p):
+    j = {}
+    j['player_id'] = p.player_id
+    
+    j['info'] = {}
+    j['info']['full_name'] = p.i_full_name
+    j['info']['type'] = p.i_type
+    j['info']['country'] = p.i_country
+    j['info']['club'] = p.i_club
+    j['info']['league'] = p.i_league
+    j['info']['knownas'] = p.i_knownas
+    j['info']['rating'] = p.i_rating
+    j['info']['position'] = p.i_position
+    j['info']['card_name'] = p.i_card_name
+
+    j['stats_summary'] = {}
+    if j['info']['position'] == 'GK':
+        j['stats_summary']['DIV'] = p.ss_DIV
+        j['stats_summary']['HAN'] = p.ss_HAN
+        j['stats_summary']['KIC'] = p.ss_KIC
+        j['stats_summary']['REF'] = p.ss_REF
+        j['stats_summary']['SPD'] = p.ss_SPD
+        j['stats_summary']['POS'] = p.ss_POS
+    else:
+        j['stats_summary']['PAC'] = p.ss_PAC
+        j['stats_summary']['SHO'] = p.ss_SHO
+        j['stats_summary']['PAS'] = p.ss_PAS
+        j['stats_summary']['DRI'] = p.ss_DRI
+        j['stats_summary']['DEF'] = p.ss_DEF
+        j['stats_summary']['PHY'] = p.ss_PHY
+    
+    j['stats_ingame'] = {}
+    j['stats_ingame']['defensive_awareness'] = p.igs_defensive_awareness
+    j['stats_ingame']['heading_accuracy'] = p.igs_heading_accuracy
+    j['stats_ingame']['interceptions'] = p.igs_interceptions
+    j['stats_ingame']['stand_tackle'] = p.igs_stand_tackle
+    j['stats_ingame']['slide_tackle'] = p.igs_slide_tackle
+    j['stats_ingame']['acceleration'] = p.igs_acceleration
+    j['stats_ingame']['sprint_speed'] = p.igs_sprint_speed
+    j['stats_ingame']['ball_control'] = p.igs_ball_control
+    j['stats_ingame']['fk_accuracy'] = p.igs_fk_accuracy
+    j['stats_ingame']['positioning'] = p.igs_positioning
+    j['stats_ingame']['aggression'] = p.igs_aggression
+    j['stats_ingame']['shot_power'] = p.igs_shot_power
+    j['stats_ingame']['long_shots'] = p.igs_long_shots
+    j['stats_ingame']['short_pass'] = p.igs_short_pass
+    j['stats_ingame']['finishing'] = p.igs_finishing
+    j['stats_ingame']['penalties'] = p.igs_penalties
+    j['stats_ingame']['dribbling'] = p.igs_dribbling
+    j['stats_ingame']['composure'] = p.igs_composure
+    j['stats_ingame']['long_pass'] = p.igs_long_pass 
+    j['stats_ingame']['reactions'] = p.igs_reactions
+    j['stats_ingame']['crossing'] = p.igs_crossing
+    j['stats_ingame']['strength'] = p.igs_strength
+    j['stats_ingame']['agility'] = p.igs_agility
+    j['stats_ingame']['balance'] = p.igs_balance
+    j['stats_ingame']['volleys'] = p.igs_volleys
+    j['stats_ingame']['jumping'] = p.igs_jumping
+    j['stats_ingame']['stamina'] = p.igs_stamina
+    j['stats_ingame']['vision'] = p.igs_vision
+    j['stats_ingame']['curve'] = p.igs_curve
+    
+    return j
+    

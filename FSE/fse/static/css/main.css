@@ -2,16 +2,13 @@
 Database update status styles 
 ****************************/
 .inprogress {
-    color: #eec200;
-    font-weight: bold;
+    color: #be9c00;
 }
 
 .failed {
-    color: #ee4b00;
-    font-weight: bold;
+    color: #be0000;
 }
 
 .complete {
-    color: #00ee0c;
-    font-weight: bold;
+    color: #00c40a;
 }
