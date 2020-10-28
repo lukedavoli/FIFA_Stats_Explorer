@@ -16,6 +16,14 @@
     background: linear-gradient(90deg, rgba(50,99,255,1) 0%, rgba(172,107,255,1) 100%); 
 }
 
+.btn-xl {
+    width: 50%
+}
+
+.card{
+    
+}
+
 /*********************************** 
     Database update status styles 
 ***********************************/

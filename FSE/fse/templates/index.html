@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-<title>FSE: Home</title>
+<title>FSE: Database</title>
 {% endblock %}
 
 {% block body %}
@@ -18,9 +17,9 @@
             <div class="card-body">
                 <form id="addPlayerForm">
                     <div class="form-group">
-                        <input class="form-control" id="urlField" type="text" placeholder="Enter FUTWIZ URL"/>
+                        <input class="form-control" id="urlField" type="text" placeholder="FUTWIZ URL"/>
                     </div>
-                    <button class="btn btn-primary" type="submit">Add Player</button>
+                    <button class="btn btn-xl btn-outline-primary" type="submit">Add Player</button>
                 </form>
             </div>
             <div class="card-footer">
@@ -38,7 +37,7 @@
                         <h4 class="card-header-text">Database</h4>
                     </div>
                     <div class="col-4">
-                        <input type="text" class="form-control" id="dbSearch">
+                        <input type="text" placeholder="Start typing a player name..." class="form-control" id="dbSearch">
                     </div>
                 </div>
             </div>
@@ -54,7 +53,7 @@
                             <th scope='col'>Country</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="playersTable">
                         <!-- Fill table rows with Asynchronous Javascript GET request -->
                     </tbody>
                 </table>
@@ -62,9 +61,4 @@
         </div>
     </div>
 </div>
-
-
-
-<!-- Javascript -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
 {% endblock %} 

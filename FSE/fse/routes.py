@@ -18,8 +18,18 @@ Returns:
     render template: index.html is rendered in the browser
 """
 @app.route('/', methods=['GET'])
-def update():
+def index():
     return render_template('index.html')
+
+
+"""Analysis page
+
+Returns:
+    render template: analysis.html is rendered in the browser
+"""
+@app.route('/analysis', methods=['GET'])
+def analysis():
+    return render_template('analysis.html')
 
 
 #########################
