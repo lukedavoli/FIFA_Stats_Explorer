@@ -11,10 +11,16 @@ class UI{
         }else if(status === 'failed'){
             this.requestStatus.className = "failed";
             this.requestStatus.innerHTML = "Failed to add player to database";
+            setTimeout(this.clearStatus, 5000);
         }else if(status === 'complete'){
             this.requestStatus.className = "complete";
             this.requestStatus.innerHTML = "Player added to database!";
+            setTimeout(this.clearStatus, 5000);
         }
+    }
+
+    clearStatus(){
+        this.requestStatus.remove();
     }
 
     updatePlayersTable(players){

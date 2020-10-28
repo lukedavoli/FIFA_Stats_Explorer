@@ -20,18 +20,9 @@ class Requests{
      * match the search time on each keystroke, *
      * update the table appropriately           *
      ********************************************/
-    searchPlayers(request){
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', `http://localhost:8000/players/name/${searchTerm}`, true);
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4){
-                if (xhr.status === 200) {
-                    return JSON.parse(xhr.responseText);
-                }else{
-                    return xhr.response;
-                }
-            }
-        };
-        xhr.send();
+    async searchPlayers(searchTerm){
+        const response = await fetch(`http://localhost:8000/players/name/${searchTerm}`);
+        const response_data = await response.json();
+        return response_data;
     }
 }

@@ -19,7 +19,7 @@ addPlayerForm.addEventListener('submit', (e) => {
         response.json().then(data => {
             console.log(data)
         })
-        
+
         if(response.ok){
             ui.updateRequestStatus('complete');
         }else{
@@ -35,9 +35,9 @@ const dbSearchField = document.getElementById('dbSearch')
 
 dbSearchField.addEventListener('keyup', (e) => {
     const searchTerm = dbSearchField.value;
-    let response;
     if(searchTerm && searchTerm.trim().length){
-        response = requests.searchPlayers(searchTerm)
+        requests.searchPlayers(searchTerm).then(data => {
+            ui.updatePlayersTable(data);
+        });
     }
-    ui.updatePlayersTable(response);
 });
