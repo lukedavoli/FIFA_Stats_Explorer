@@ -20,8 +20,17 @@ class Requests{
      * match the search time on each keystroke, *
      * update the table appropriately           *
      ********************************************/
-    async searchPlayers(searchTerm){
+    async getPlayersByName(searchTerm){
         const response = await fetch(`http://localhost:8000/players/name/${searchTerm}`);
+        const response_data = await response.json();
+        return response_data;
+    }
+
+    /********************
+     * GET player by id *
+     ********************/
+    async getPlayerById(id){
+        const response = await fetch(`http://localhost:8000/players/id/${id}`);
         const response_data = await response.json();
         return response_data;
     }

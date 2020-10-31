@@ -1,5 +1,42 @@
 from fse import db
 
+#####################################################################
+###                       DATABASE ACCESS                         ###
+#####################################################################
+
+def add_player(json_player):
+    new_player = dict_to_dbobject(json_player)
+    db.session.add(new_player)
+    db.session.commit()
+    json_player = dbobject_to_dict(new_player)
+    return json_player
+
+def get_players_by_name(name):
+    results = db.session.query(Player).filter(Player.i_full_name.like(f'%{name}%')).all()
+    players = []
+    for result in results:
+        player = {
+            'id': result.player_id,
+            'name': result.i_full_name,
+            'type': result.i_type,
+            'club': result.i_club,
+            'country': result.i_country,
+            'position': result.i_position,
+            'rating': result.i_rating,
+            'knownas': result.i_knownas
+        }
+        players.append(player)
+    return players
+
+def get_player_by_id(player_id):
+    result = Player.query.get(player_id)
+    return dbobject_to_dict(result)
+
+
+#####################################################################
+###                       DATABASE MODELS                         ###
+#####################################################################
+
 class Player(db.Model):
     player_id = db.Column(db.Integer, nullable=False, unique=True, primary_key=True)
     i_card_name = db.Column(db.String(), nullable=False)
@@ -56,29 +93,10 @@ class Player(db.Model):
     def __repr__(self):
         return f"{self.i_card_name}({self.player_id})"
 
-def add_player(json_player):
-    new_player = dict_to_dbobject(json_player)
-    db.session.add(new_player)
-    db.session.commit()
-    json_player = dbobject_to_dict(new_player)
-    return json_player
 
-def get_players_byname(name):
-    results = db.session.query(Player).filter(Player.i_full_name.like(f'%{name}%')).all()
-    players = []
-    for result in results:
-        player = {
-            'id': result.player_id,
-            'name': result.i_full_name,
-            'type': result.i_type,
-            'club': result.i_club,
-            'country': result.i_country,
-            'position': result.i_position,
-            'rating': result.i_rating
-        }
-        players.append(player)
-    return players
-
+#####################################################################
+###                     OBJECT/JSON CONVERSION                    ###
+#####################################################################
 
 def dict_to_dbobject(p):
     new_player = Player(i_card_name=p['info']['card_name'],

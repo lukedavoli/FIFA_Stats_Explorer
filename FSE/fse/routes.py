@@ -7,7 +7,6 @@ from fse import app
 from fse import dao
 from fse.scrape_fw import scrape_player
 
-
 ##########################
 #### FRONT-END ROUTES ####
 ##########################
@@ -59,12 +58,30 @@ def add_player():
     return response
 
 
+"""Endpoint for getting players from the database by name
+
+Returns:
+    JSON: Resturns a JSON object with short summary info on all players
+    with a name like the search term
+"""
 @app.route('/players/name/<string:name>', methods=['GET'])
-def get_players_byname(name):
-    players = dao.get_players_byname(name)
+def get_players_by_name(name):
+    players = dao.get_players_by_name(name)
     response_data = json.dumps(players)
-    status = 200
-    response = Response(response_data, status=status, mimetype='application/json')
+    response = Response(response_data, status=200, mimetype='application/json')
+    return response
+
+
+"""Endpoint for getting a player by their id
+
+Returns:
+    JSON: Returns the player as a JSON object
+"""
+@app.route('/players/id/<player_id>', methods=['GET'])
+def get_player_by_id(player_id):
+    player = dao.get_player_by_id(player_id)
+    response_data = json.dumps(player)
+    response = Response(response_data, status=200, mimetype='application/json')
     return response
 
 

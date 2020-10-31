@@ -11,6 +11,10 @@
     background: linear-gradient(90deg, rgba(112,147,255,1) 0%, rgba(214,182,255,1) 100%);  
 }
 
+.listgroup-header{
+    background: rgba(0,0,0,.03)
+}
+
 .navbar {
     background: rgb(50,99,255);
     background: linear-gradient(90deg, rgba(50,99,255,1) 0%, rgba(172,107,255,1) 100%); 
@@ -20,8 +24,16 @@
     width: 50%
 }
 
-.card{
-    
+.nav-link {
+    color: white;
+}
+
+.nav-link:hover {
+    color: white;
+}
+
+select{
+    size: '8';
 }
 
 /*********************************** 
@@ -42,3 +54,5 @@
 .complete {
     color: #00c40a;
 }
+
+/************************/

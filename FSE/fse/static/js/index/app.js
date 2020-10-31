@@ -36,7 +36,7 @@ const dbSearchField = document.getElementById('dbSearch')
 dbSearchField.addEventListener('keyup', (e) => {
     const searchTerm = dbSearchField.value;
     if(searchTerm && searchTerm.trim().length){
-        requests.searchPlayers(searchTerm).then(data => {
+        requests.getPlayersByName(searchTerm).then(data => {
             ui.updatePlayersTable(data);
         });
     }

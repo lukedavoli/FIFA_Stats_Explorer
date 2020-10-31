@@ -7,18 +7,97 @@
 {% block body %}
 <div class="mt-5 mb-5 row">
     <div class="col">
-        <ul class="nav nav-tabs">
-            <li class="nav-item"><a class="nav-link active" href="#">Single-Stat Bar Chart</a></li>
-            <li class="nav-item"><a class="nav-link" href="#" >Two-Stat Scatter Plot</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Multi-Stat Radar Chart</a></li>
-        </ul>
+        <div class="card">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item"><a class="nav-link active" href="#">Single-Stat Bar Chart</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" >Two-Stat Scatter Plot</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Multi-Stat Radar Chart</a></li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="row mt-3 mb-3">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="stat-select-bar">Add Players</label>
+                            <input list="players-list" placeholder="Start typing a player name..." class="form-control custom-select" id="addPlayersSearch">
+                            <datalist id="players-list">
+                            </datalist>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="stat-select-bar">Choose a stat</label>
+                            <input id="chosen-stat-bar" placeholder="Start typing a stat..." list="stats-list-bar" class="form-control custom-select">
+                            <datalist id="stats-list-bar">
+                                <option value="DEF">DEFENCE</option>>
+                                <option>DRIBBLING</option>
+                                <option>PACE</option>
+                                <option>PASSING</option>
+                                <option>PHYSICAL</option>
+                                <option>SHOOTING</option>
+                                <option>Acceleration</option>
+                                <option>Aggression</option>
+                                <option>Agility</option>
+                                <option>Balance</option>
+                                <option>Ball Control</option>
+                                <option>Composure</option>
+                                <option>Curve</option>
+                                <option>Crossing</option>
+                                <option>Curve</option>
+                                <option>Defensive Awareness</option>
+                                <option>Dribbling</option>
+                                <option>Finishing</option>
+                                <option>Free Kick Accuracy</option>
+                                <option>Heading Accuracy</option>
+                                <option>Interceptions</option>
+                                <option>Jumping</option>
+                                <option>Long Passing</option>
+                                <option>Long Shots</option>
+                                <option>Penalties</option>
+                                <option>Positioning</option>
+                                <option>Reactions</option>
+                                <option>Short Passing</option>
+                                <option>Shot Power</option>
+                                <option>Slide tackle</option>
+                                <option>Sprint Speed</option>
+                                <option>Stamina</option>
+                                <option>Standing Tackle</option>
+                                <option>Strength</option>
+                                <option>Vision</option>
+                                <option>Volleys</option>
+                            </datalist>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div id="barChartContainer">
+                            <canvas id="barChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header listgroup-header">
+                                Current Analysis
+                            </div>
+                            <ul id="barChartPlayers" class="list-group list-group-flush">
+                                <li class="list-group-item"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<div class="mt-5 mb-5 row">
-    <div class="col">
-        <canvas id="chart"></canvas>
-    </div>
-</div>
+
 <!-- Javascript -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-{% endblock %} 
+<script type="text/javascript" src="{{ url_for('static', filename='js/analysis/charts.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/requests.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/analysis/ui.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/analysis/app.js') }}"></script>
+{% endblock %}
