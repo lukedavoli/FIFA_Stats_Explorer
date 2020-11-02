@@ -5,6 +5,7 @@ const chosenStatBar = document.getElementById('chosen-stat-bar');
 const dbSearchField = document.getElementById('addPlayersSearch');
 const btnClearPlayers = document.getElementById('btnClearPlayers');
 const cbxToggleAxis = document.getElementById('cbxAxisToggle');
+const chartTabs = document.getElementById('chartTabs');
 
 window.addEventListener('load', (e) => {
     ui.updateBarChartPlayers();
