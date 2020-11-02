@@ -1,6 +1,11 @@
 const ui = new UI;
 const requests = new Requests;
 
+window.addEventListener('load', (e) => {
+    ui.updateBarChartPlayers();
+    ui.updateBarChart();
+});
+
 /*********************************
  - Search the database for players
  - Add player to current analysis
@@ -24,6 +29,7 @@ dbSearchField.addEventListener('select', (e) => {
     requests.getPlayerById(playerId).then(data => {
         addPlayerToSS("bar", data);
         ui.updateBarChartPlayers();
+        ui.updateBarChart();
     })
 });
 
@@ -34,3 +40,13 @@ function addPlayerToSS(chart, data){
     existingPlayers.push(data);
     sessionStorage.setItem(`${chart}ChartPlayers`, JSON.stringify(existingPlayers));
 }
+
+
+/*************************
+ - Change chosen statistic
+ *************************/
+const chosenStatBar = document.getElementById('chosen-stat-bar')
+
+chosenStatBar.addEventListener('input', (e) => {
+    ui.updateBarChart(chosenStatBar.value);
+});

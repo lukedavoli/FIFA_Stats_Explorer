@@ -28,44 +28,44 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label for="stat-select-bar">Choose a stat</label>
-                            <input id="chosen-stat-bar" placeholder="Start typing a stat..." list="stats-list-bar" class="form-control custom-select">
+                            <input id="chosen-stat-bar" selected="PACE" list="stats-list-bar" class="form-control custom-select">
                             <datalist id="stats-list-bar">
                                 <option value="DEF">DEFENCE</option>>
-                                <option>DRIBBLING</option>
-                                <option>PACE</option>
-                                <option>PASSING</option>
-                                <option>PHYSICAL</option>
-                                <option>SHOOTING</option>
-                                <option>Acceleration</option>
-                                <option>Aggression</option>
-                                <option>Agility</option>
-                                <option>Balance</option>
-                                <option>Ball Control</option>
-                                <option>Composure</option>
-                                <option>Curve</option>
-                                <option>Crossing</option>
-                                <option>Curve</option>
-                                <option>Defensive Awareness</option>
-                                <option>Dribbling</option>
-                                <option>Finishing</option>
-                                <option>Free Kick Accuracy</option>
-                                <option>Heading Accuracy</option>
-                                <option>Interceptions</option>
-                                <option>Jumping</option>
-                                <option>Long Passing</option>
-                                <option>Long Shots</option>
-                                <option>Penalties</option>
-                                <option>Positioning</option>
-                                <option>Reactions</option>
-                                <option>Short Passing</option>
-                                <option>Shot Power</option>
-                                <option>Slide tackle</option>
-                                <option>Sprint Speed</option>
-                                <option>Stamina</option>
-                                <option>Standing Tackle</option>
-                                <option>Strength</option>
-                                <option>Vision</option>
-                                <option>Volleys</option>
+                                <option value="DRI">DRIBBLING</option>
+                                <option value="PAC">PACE</option>
+                                <option value="PAS">PASSING</option>
+                                <option value="PHY">PHYSICAL</option>
+                                <option value="SHO">SHOOTING</option>
+                                <option value="acceleration">Acceleration</option>
+                                <option value="aggression">Aggression</option>
+                                <option value="agility">Agility</option>
+                                <option value="balance">Balance</option>
+                                <option value="ball_control">Ball Control</option>
+                                <option value="composure">Composure</option>
+                                <option value="curve">Curve</option>
+                                <option value="crossing">Crossing</option>
+                                <option value="curve">Curve</option>
+                                <option value="defensive_awareness">Defensive Awareness</option>
+                                <option value="dribbling">Dribbling</option>
+                                <option value="finishing">Finishing</option>
+                                <option value="fk_accuracy">Free Kick Accuracy</option>
+                                <option value="heading_accuracy">Heading Accuracy</option>
+                                <option value="interceptions">Interceptions</option>
+                                <option value="jumping">Jumping</option>
+                                <option value="long_pass">Long Passing</option>
+                                <option value="long_shots">Long Shots</option>
+                                <option value="penalties">Penalties</option>
+                                <option value="positioning">Positioning</option>
+                                <option value="reactions">Reactions</option>
+                                <option value="short_pass">Short Passing</option>
+                                <option value="shot_power">Shot Power</option>
+                                <option value="slide_tackle">Slide tackle</option>
+                                <option value="sprint_speed">Sprint Speed</option>
+                                <option value="stamina">Stamina</option>
+                                <option value="stand_tackle">Standing Tackle</option>
+                                <option value="strength">Strength</option>
+                                <option value="vision">Vision</option>
+                                <option value="volleys">Volleys</option>
                             </datalist>
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                     </div>
                 </div>
                 <div class="row mt-5">
-                    <div class="col">
+                    <div class="col-6">
                         <div class="card">
                             <div class="card-header listgroup-header">
                                 Current Analysis
@@ -86,6 +86,19 @@
                             <ul id="barChartPlayers" class="list-group list-group-flush">
                                 <li class="list-group-item"></li>
                             </ul>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <button id="btnClearPlayers" type="button" class="btn btn-outline-danger">Clear Players</button>
+                                <div class="form-check mt-3">
+                                    <input class="form-check-input" type="checkbox" value="" id="axisToggle">
+                                    <label class="form-check-label" for="axisToggle">
+                                        Focused Axis Scale
+                                    </label>
+                                  </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -96,7 +109,6 @@
 
 <!-- Javascript -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/analysis/charts.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/requests.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/analysis/ui.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/analysis/app.js') }}"></script>
