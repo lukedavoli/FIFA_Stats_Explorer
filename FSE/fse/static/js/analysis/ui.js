@@ -30,25 +30,39 @@ class UI{
     updateBarChartPlayers(){
         let players = JSON.parse(sessionStorage.getItem('barChartPlayers'));
         this.barChartPlayers.innerHTML = "";
-        players.forEach((player) => {
-            this.barChartPlayers.innerHTML +=
-                `<li class="list-group-item">${player.info.type} ${player.info.knownas} (${player.info.rating})</li>`
-        });   
+        if (players){
+            players.forEach((player) => {
+                this.barChartPlayers.innerHTML +=
+                    `<li class="list-group-item">${player.info.type} ${player.info.knownas} (${player.info.rating})</li>`
+            });   
+        }
     }
 
-    updateBarChart(stat){
+    updateBarChart(stat, focused){
         let players = JSON.parse(sessionStorage.getItem('barChartPlayers'));
         let labels = [];
         let stats = [];
 
-        players.forEach((player) => {
-            labels.push(`${player.info.type} ${player.info.knownas}`);
-            if(this.summary_stats.indexOf(stat) > -1){
-                stats.push(player.stats_summary[stat])
-            }else{
-                stats.push(player.stats_ingame[stat])
-            } 
-        })
+        if (players){
+            players.forEach((player) => {
+                labels.push(`${player.info.type} ${player.info.knownas}`);
+                if(this.summary_stats.indexOf(stat) > -1){
+                    stats.push(player.stats_summary[stat]);
+                }else{
+                    stats.push(player.stats_ingame[stat]);
+                } 
+            }); 
+        }
+
+        let min_val;
+        let max_val;
+        if(focused){
+            min_val = Math.min(...stats) - 5;
+            max_val = Math.max(...stats) + 5;
+        }else{
+            min_val = 0;
+            max_val = 100
+        }
 
         if(window.myBarChart) myBarChart.destroy();
         window.myBarChart = new Chart(this.barChart, {
@@ -65,8 +79,8 @@ class UI{
                 scales: {
                     yAxes: [{
                         ticks: {
-                            suggestedMin: 0,
-                            suggestedMax: 100
+                            suggestedMin: min_val,
+                            suggestedMax: max_val
                         }
                     }]
                 }

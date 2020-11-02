@@ -1,17 +1,23 @@
 const ui = new UI;
 const requests = new Requests;
 
+const chosenStatBar = document.getElementById('chosen-stat-bar');
+const dbSearchField = document.getElementById('addPlayersSearch');
+const btnClearPlayers = document.getElementById('btnClearPlayers');
+const cbxToggleAxis = document.getElementById('cbxAxisToggle');
+
 window.addEventListener('load', (e) => {
     ui.updateBarChartPlayers();
-    ui.updateBarChart();
+    chosenStatBar.value = 'PAC';
+    cbxToggleAxis.checked = true;
+    ui.updateBarChart(chosenStatBar.value, cbxToggleAxis.checked);
 });
+
 
 /*********************************
  - Search the database for players
  - Add player to current analysis
  *********************************/
-const dbSearchField = document.getElementById('addPlayersSearch')
-
 dbSearchField.addEventListener('keyup', (e) => {
     const searchTerm = dbSearchField.value;
     if(searchTerm && searchTerm.trim().length){
@@ -23,16 +29,6 @@ dbSearchField.addEventListener('keyup', (e) => {
     }
 });
 
-dbSearchField.addEventListener('select', (e) => {
-    const playerId = dbSearchField.value;
-    ui.clearField(dbSearchField);
-    requests.getPlayerById(playerId).then(data => {
-        addPlayerToSS("bar", data);
-        ui.updateBarChartPlayers();
-        ui.updateBarChart();
-    })
-});
-
 function addPlayerToSS(chart, data){
     let existingPlayers = JSON.parse(sessionStorage.getItem(`${chart}ChartPlayers`));
     if(existingPlayers == null) existingPlayers = [];
@@ -41,12 +37,38 @@ function addPlayerToSS(chart, data){
     sessionStorage.setItem(`${chart}ChartPlayers`, JSON.stringify(existingPlayers));
 }
 
+dbSearchField.addEventListener('select', (e) => {
+    const playerId = dbSearchField.value;
+    ui.clearField(dbSearchField);
+    requests.getPlayerById(playerId).then(data => {
+        addPlayerToSS("bar", data);
+        ui.updateBarChartPlayers();
+        ui.updateBarChart(chosenStatBar.value, cbxToggleAxis.checked);
+    })
+});
+
 
 /*************************
  - Change chosen statistic
  *************************/
-const chosenStatBar = document.getElementById('chosen-stat-bar')
-
 chosenStatBar.addEventListener('input', (e) => {
-    ui.updateBarChart(chosenStatBar.value);
+    ui.updateBarChart(chosenStatBar.value, cbxToggleAxis.checked);
+});
+
+
+/****************************
+ - Clear players in bar chart
+ ***************************/
+btnClearPlayers.addEventListener('click', (e) => {
+    sessionStorage.removeItem('barChartPlayers');
+    ui.updateBarChartPlayers();
+    ui.updateBarChart(chosenStatBar.value, cbxToggleAxis.checked);
+});
+
+
+/*******************
+ - Toggle axis scale
+ ******************/
+cbxToggleAxis.addEventListener('change', (e) => {
+    ui.updateBarChart(chosenStatBar.value, cbxToggleAxis.checked)
 });
