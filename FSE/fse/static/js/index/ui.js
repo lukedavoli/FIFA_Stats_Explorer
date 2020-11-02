@@ -20,7 +20,7 @@ class UI{
     }
 
     clearStatus(){
-        this.requestStatus.remove();
+        this.requestStatus.innerHTML = "";
     }
 
     updatePlayersTable(players){

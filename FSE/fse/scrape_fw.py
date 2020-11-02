@@ -5,7 +5,9 @@ from pprint import pprint
 def scrape_player(url):
     player = {}
 
-    page = requests.get(url).text
+    page = requests.get(url)
+    page.encoding = 'utf-8'
+    page = page.text
     soup = BeautifulSoup(page, 'html.parser')
 
     player['info'] = {}

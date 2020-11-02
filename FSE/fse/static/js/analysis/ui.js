@@ -4,10 +4,14 @@ class UI{
         this.barChartPlayers = document.getElementById('barChartPlayers');
         this.barChart = document.getElementById('barChart').getContext('2d');
         this.summary_stats = ['DEF', 'DRI', 'SHO', 'PAS', 'PHY', 'PAC'];
-        this.colors = ['rgba(255, 15, 15, 0.4)', 'rgba(255, 135, 15, 0.4)', 
-                        'rgba(255, 255, 15, 0.4)', 'rgba(135, 255, 15, 0.4)', 
-                        'rgba(15, 255, 15, 0.2)', 'rgba(15, 255, 255, 0.2)', 
-                        'rgba(15, 15, 255, 0.2)', 'rgba(255, 15, 255, 0.2)']
+        this.backColors = ['rgba(255, 15, 15, 0.1)', 'rgba(255, 135, 15, 0.1)', 
+                        'rgba(255, 255, 15, 0.1)', 'rgba(135, 255, 15, 0.1)', 
+                        'rgba(15, 255, 15, 0.1)', 'rgba(15, 255, 255, 0.1)', 
+                        'rgba(15, 15, 255, 0.1)', 'rgba(255, 15, 255, 0.1)']
+        this.backColors = ['rgba(255, 15, 15, 0.5)', 'rgba(255, 135, 15, 0.5)', 
+                        'rgba(255, 255, 15, 0.5)', 'rgba(135, 255, 15, 0.5)', 
+                        'rgba(15, 255, 15, 0.5)', 'rgba(15, 255, 255, 0.5)', 
+                        'rgba(15, 15, 255, 0.5)', 'rgba(255, 15, 255, 0.5)']
     }
 
     updatePlayerOptions(players){
@@ -72,7 +76,9 @@ class UI{
                 datasets: [{
                     label: stat,
                     data: stats,
-                    backgroundColor: this.colors
+                    backgroundColor: this.backColors,
+                    borderColor: this.borderColors,
+                    borderWidth: 3
                 }]
             },
             options: {
