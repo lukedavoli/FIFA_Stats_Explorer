@@ -40,11 +40,19 @@ function addPlayerToSS(chart, data){
 dbSearchField.addEventListener('select', (e) => {
     const playerId = dbSearchField.value;
     ui.clearField(dbSearchField);
-    requests.getPlayerById(playerId).then(data => {
-        addPlayerToSS("bar", data);
-        ui.updateBarChartPlayers();
-        ui.updateBarChart(chosenStatBar.value, cbxToggleAxis.checked);
-    })
+    let players = JSON.parse(sessionStorage.getItem('barChartPlayers'));
+    if (players === null){
+        players = [];
+    }
+    if(players.length < 8){
+        requests.getPlayerById(playerId).then(data => {
+            addPlayerToSS("bar", data);
+            ui.updateBarChartPlayers();
+            ui.updateBarChart(chosenStatBar.value, cbxToggleAxis.checked);
+        });
+    }else{
+        ui.displayMaxPlayersWarning();
+    }
 });
 
 

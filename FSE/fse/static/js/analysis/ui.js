@@ -3,6 +3,8 @@ class UI{
         this.dlPlayers = document.getElementById('players-list');
         this.barChartPlayers = document.getElementById('barChartPlayers');
         this.barChart = document.getElementById('barChart').getContext('2d');
+        this.lblMaxPlayers = document.getElementById('lblMaxPlayers')
+
         this.summary_stats = ['DEF', 'DRI', 'SHO', 'PAS', 'PHY', 'PAC'];
         this.backColors = ['rgba(255, 15, 15, 0.1)', 'rgba(255, 135, 15, 0.1)', 
                         'rgba(255, 255, 15, 0.1)', 'rgba(135, 255, 15, 0.1)', 
@@ -40,6 +42,16 @@ class UI{
                     `<li class="list-group-item">${player.info.type} ${player.info.knownas} (${player.info.rating})</li>`
             });   
         }
+    }
+
+    displayMaxPlayersWarning(){
+        this.lblMaxPlayers.className = "failed";
+        this.lblMaxPlayers.innerHTML = "Maximum 8 players in bar chart";
+        setTimeout(this.clearLabel, 5000);
+    }
+    
+    clearLabel(){
+        this.lblMaxPlayers.innerHTML = "";
     }
 
     updateBarChart(stat, focused){
