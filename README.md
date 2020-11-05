@@ -18,7 +18,15 @@ This simple app solves this problem by providing a quick and easy way to visuali
 Initial release. Functionality includes... 
 * adding players to an SQLite database using FUTWIZ url
 * searching the database by player name
+
+![database add and search](https://media.giphy.com/media/VqjEtUBaBh0MT7Brm3/giphy.gif)
+
 * interactive bar chart analysis of players in database 
+
+![bar chart](https://media.giphy.com/media/a3nJPz5dCimEGnO6bi/giphy.gif)
+
+
+
 
 ## Developement Env
 * OS: Windows 10, 64-bit
