@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>FSE: Database</title>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col">
+        <!-- SEARCH PLAYERS -->
+    </div>
+</div>
+<div class="mt-5 mb-5 row">
+    <div class=" col">
+        <div class="card text-center">
+            <div class="card-header"><h4 class="card-header-text">Add A New Player</h4></div>
+            <div class="card-body">
+                <form id="addPlayerForm">
+                    <div class="form-group">
+                        <input class="form-control" id="urlField" type="text" placeholder="FUTWIZ URL"/>
+                    </div>
+                    <button class="btn btn-xl btn-outline-primary" type="submit">Add Player</button>
+                </form>
+            </div>
+            <div class="card-footer">
+                <p id='requestStatus'> </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mt-5 mb-5 row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="card-header-text">Database</h4>
+                    </div>
+                    <div class="col-4">
+                        <input type="text" placeholder="Start typing a player name..." class="form-control" id="dbSearch">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope='col'>Name</th>
+                            <th scope='col'>Type</th>
+                            <th scope='col'>Rating</th>
+                            <th scope='col'>Position</th>
+                            <th scope='col'>Club</th>
+                            <th scope='col'>Country</th>
+                        </tr>
+                    </thead>
+                    <tbody id="playersTable">
+                        <!-- Fill table rows with Asynchronous Javascript GET request -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/requests.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/index/ui.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/index/app.js') }}"></script>
+{% endblock %} 

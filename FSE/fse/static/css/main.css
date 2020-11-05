@@ -1,0 +1,58 @@
+/******************************* 
+        Bootstrap Overrides 
+*******************************/
+.card-header-text{
+    margin-bottom: 0;
+    color: white;
+}
+
+.card-header {
+    background: rgb(112,147,255);
+    background: linear-gradient(90deg, rgba(112,147,255,1) 0%, rgba(214,182,255,1) 100%);  
+}
+
+.listgroup-header{
+    background: rgba(0,0,0,.03)
+}
+
+.navbar {
+    background: rgb(50,99,255);
+    background: linear-gradient(90deg, rgba(50,99,255,1) 0%, rgba(172,107,255,1) 100%); 
+}
+
+.btn-xl {
+    width: 50%
+}
+
+.nav-link {
+    color: white;
+}
+
+.nav-link:hover {
+    color: white;
+}
+
+select{
+    size: '8';
+}
+
+/*********************************** 
+    Database update status styles 
+***********************************/
+#requestStatus{
+    margin-bottom: 0;
+}
+
+.inprogress {
+    color: #be9c00;
+}
+
+.failed {
+    color: #be0000;
+}
+
+.complete {
+    color: #00c40a;
+}
+
+/************************/
