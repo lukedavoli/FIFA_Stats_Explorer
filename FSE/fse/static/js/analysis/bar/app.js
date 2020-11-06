@@ -1,7 +1,7 @@
 const ui = new UI;
 const requests = new Requests;
 
-const chosenStat_bar = document.getElementById('chosen-stat-bar');
+const chosenStat_bar = document.getElementById('stat-select-bar');
 const playerSearch_bar = document.getElementById('player-search-bar');
 const clearPlayers_bar = document.getElementById('clear-players-bar');
 const axisToggle_bar = document.getElementById('axis-toggle-bar');
