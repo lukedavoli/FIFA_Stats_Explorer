@@ -1,17 +1,16 @@
 const ui = new UI;
 const requests = new Requests;
 
-const chosenStatBar = document.getElementById('chosen-stat-bar');
-const dbSearchField = document.getElementById('addPlayersSearch');
-const btnClearPlayers = document.getElementById('btnClearPlayers');
-const cbxToggleAxis = document.getElementById('cbxAxisToggle');
-const chartTabs = document.getElementById('chartTabs');
+const chosenStat_bar = document.getElementById('chosen-stat-bar');
+const playerSearch_bar = document.getElementById('player-search-bar');
+const clearPlayers_bar = document.getElementById('clear-players-bar');
+const axisToggle_bar = document.getElementById('axis-toggle-bar');
 
 window.addEventListener('load', (e) => {
-    ui.updateBarChartPlayers();
-    chosenStatBar.value = 'PAC';
-    cbxToggleAxis.checked = true;
-    ui.updateBarChart(chosenStatBar.value, cbxToggleAxis.checked);
+    ui.updatePlayers_bar();
+    chosenStat_bar.value = 'PAC';
+    axisToggle_bar.checked = true;
+    ui.updateChart_bar(chosenStat_bar.value, axisToggle_bar.checked);
 });
 
 
@@ -19,8 +18,8 @@ window.addEventListener('load', (e) => {
  - Search the database for players
  - Add player to current analysis
  *********************************/
-dbSearchField.addEventListener('keyup', (e) => {
-    const searchTerm = dbSearchField.value;
+playerSearch_bar.addEventListener('keyup', (e) => {
+    const searchTerm = playerSearch_bar.value;
     if(searchTerm && searchTerm.trim().length){
         requests.getPlayersByName(searchTerm).then(data => {
             ui.updatePlayerOptions(data);
@@ -38,9 +37,9 @@ function addPlayerToSS(chart, data){
     sessionStorage.setItem(`${chart}ChartPlayers`, JSON.stringify(existingPlayers));
 }
 
-dbSearchField.addEventListener('select', (e) => {
-    const playerId = dbSearchField.value;
-    ui.clearField(dbSearchField);
+playerSearch_bar.addEventListener('select', (e) => {
+    const playerId = playerSearch_bar.value;
+    ui.clearField(playerSearch_bar);
     let players = JSON.parse(sessionStorage.getItem('barChartPlayers'));
     if (players === null){
         players = [];
@@ -48,8 +47,8 @@ dbSearchField.addEventListener('select', (e) => {
     if(players.length < 8){
         requests.getPlayerById(playerId).then(data => {
             addPlayerToSS("bar", data);
-            ui.updateBarChartPlayers();
-            ui.updateBarChart(chosenStatBar.value, cbxToggleAxis.checked);
+            ui.updatePlayers_bar();
+            ui.updateChart_bar(chosenStat_bar.value, axisToggle_bar.checked);
         });
     }else{
         ui.displayMaxPlayersWarning();
@@ -60,24 +59,24 @@ dbSearchField.addEventListener('select', (e) => {
 /*************************
  - Change chosen statistic
  *************************/
-chosenStatBar.addEventListener('input', (e) => {
-    ui.updateBarChart(chosenStatBar.value, cbxToggleAxis.checked);
+chosenStat_bar.addEventListener('input', (e) => {
+    ui.updateChart_bar(chosenStat_bar.value, axisToggle_bar.checked);
 });
 
 
 /****************************
  - Clear players in bar chart
  ***************************/
-btnClearPlayers.addEventListener('click', (e) => {
+clearPlayers_bar.addEventListener('click', (e) => {
     sessionStorage.removeItem('barChartPlayers');
-    ui.updateBarChartPlayers();
-    ui.updateBarChart(chosenStatBar.value, cbxToggleAxis.checked);
+    ui.updatePlayers_bar();
+    ui.updateChart_bar(chosenStat_bar.value, axisToggle_bar.checked);
 });
 
 
 /*******************
  - Toggle axis scale
  ******************/
-cbxToggleAxis.addEventListener('change', (e) => {
-    ui.updateBarChart(chosenStatBar.value, cbxToggleAxis.checked)
+axisToggle_bar.addEventListener('change', (e) => {
+    ui.updateChart_bar(chosenStat_bar.value, axisToggle_bar.checked)
 });
