@@ -1,10 +1,10 @@
 # Fifa Stats Explorer
 
 ## Focus Topics
-* Python
-* Flask REST API and Web Development
-* Web-scraping
-* Plotting in the browser
+* Python, HTML/CSS/Javascript
+* REST API and front-end development (Flask)
+* Web-scraping (BeautifulSoup)
+* Plotting in the browser (Chart.js)
 
 ## Overview
 A small side-project for some practice with a few skills.
@@ -26,9 +26,7 @@ Initial release. Functionality includes...
 ![bar chart](https://media.giphy.com/media/a3nJPz5dCimEGnO6bi/giphy.gif)
 
 
-
-
-## Developement Env
+## Developement Environment
 * OS: Windows 10, 64-bit
 * Language: Python 3.8.5
 * Web Framework: Flask 1.1.2
