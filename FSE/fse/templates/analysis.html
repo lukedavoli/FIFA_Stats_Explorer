@@ -85,8 +85,8 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="stat1-select-sctr">Choose stats</label>
-                                    <input id="stat1-select-sctr" placeholder="Stat 1 (x-axis)" selected="PACE" list="stats-list" class="form-control custom-select">
-                                    <input id="stat2-select-sctr" placeholder="Stat 2 (y-axis)" selected="SHOOTING" list="stats-list" class="form-control custom-select mt-1">
+                                    <input id="statx-select-sctr" placeholder="Stat 1 (x-axis)" selected="PACE" list="stats-list" class="form-control custom-select">
+                                    <input id="staty-select-sctr" placeholder="Stat 2 (y-axis)" selected="SHOOTING" list="stats-list" class="form-control custom-select mt-1">
                                 </div>
                             </div>
                         </div>
@@ -178,5 +178,6 @@
 <script type="text/javascript" src="{{ url_for('static', filename='js/requests.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/analysis/bar/ui.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/analysis/bar/app.js') }}"></script>
-
+<script type="text/javascript" src="{{ url_for('static', filename='js/analysis/scatter/ui.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/analysis/scatter/app.js') }}"></script>
 {% endblock %}
