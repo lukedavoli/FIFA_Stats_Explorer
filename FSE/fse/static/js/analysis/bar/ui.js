@@ -1,6 +1,6 @@
 class UI{
     constructor(){
-        this.dlPlayers_bar = document.getElementById('players-list');
+        this.dlPlayers_bar = document.getElementById('players-list-bar');
         this.players_bar = document.getElementById('players-bar');
         this.chart_bar = document.getElementById('chart-bar').getContext('2d');
         this.maxPlayers_bar = document.getElementById('max-players-bar')
