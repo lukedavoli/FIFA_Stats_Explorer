@@ -1,9 +1,9 @@
-class UI{
+class UI_bar{
     constructor(){
-        this.dlPlayers_bar = document.getElementById('players-list');
+        this.dlPlayers_bar = document.getElementById('players-list-bar');
         this.players_bar = document.getElementById('players-bar');
         this.chart_bar = document.getElementById('chart-bar').getContext('2d');
-        this.maxPlayers_bar = document.getElementById('max-players-bar')
+        this.maxPlayers_bar = document.getElementById('max-players-bar');
 
         this.summary_stats = ['DEF', 'DRI', 'SHO', 'PAS', 'PHY', 'PAC'];
         
@@ -19,7 +19,6 @@ class UI{
     }
 
     updatePlayerOptions(players){
-        
         this.dlPlayers_bar.innerHTML = "";
         players.forEach((player) => {
             this.dlPlayers_bar.innerHTML += 
@@ -36,7 +35,7 @@ class UI{
     }
 
     updatePlayers_bar(){
-        let players = JSON.parse(sessionStorage.getItem('players_bar'));
+        let players = JSON.parse(sessionStorage.getItem('barChartPlayers'));
         this.players_bar.innerHTML = "";
         if (players){
             players.forEach((player) => {
