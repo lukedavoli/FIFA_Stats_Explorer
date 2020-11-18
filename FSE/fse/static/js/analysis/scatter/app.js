@@ -75,6 +75,6 @@ clearPlayers_sctr.addEventListener('click', (e) => {
 /*******************
  - Toggle axis scale
  ******************/
-axisToggle_bar.addEventListener('change', (e) => {
+axisToggle_sctr.addEventListener('change', (e) => {
     ui_sctr.updateChart_sctr(chosenStatX_sctr.value, chosenStatY_sctr.value, axisToggle_sctr.checked);
 });

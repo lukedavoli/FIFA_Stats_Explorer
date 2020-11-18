@@ -47,6 +47,11 @@ class UI_sctr{
         let labels = [];
         let stats = [];
 
+        let min_x_val = 100;
+        let max_x_val = -1;
+        let min_y_val = 100;
+        let max_y_val = -1;
+
         if(players){
             players.forEach((player) => {
                 labels.push(`${player.info.type} ${player.info.knownas}`);
@@ -62,8 +67,33 @@ class UI_sctr{
                 }else{
                     statpair['y'] = player.stats_ingame[ystat];
                 }
+
+                if(statpair['x'] < min_x_val){
+                    min_x_val = statpair['x'];
+                }
+                if(statpair['x'] > max_x_val){
+                    max_x_val = statpair['x'];
+                }
+                if(statpair['y'] < min_y_val){
+                    min_y_val = statpair['y'];
+                }
+                if(statpair['y'] > max_x_val){
+                    min_y_val = statpair['y'];
+                }
                 stats.push(statpair);
             });
+        }
+
+        if(!focused){
+            min_x_val = 0;
+            max_x_val = 100;
+            min_y_val = 0;
+            max_y_val = 100;
+        }else{
+            min_x_val = min_x_val - 10;
+            max_x_val = max_x_val + 10;
+            min_y_val = min_y_val - 10;
+            max_y_val = max_y_val + 10;
         }
         
         if(window.mychart_sctr) mychart_sctr.destroy();
@@ -76,7 +106,7 @@ class UI_sctr{
                     label: `${xstat} vs ${ystat}`,
                     data: stats,
                     pointBackgroundColor: this.backColors,
-                    pointRadius: 5
+                    pointRadius: 7
                 }]
             },
             options: {
@@ -101,8 +131,8 @@ class UI_sctr{
                 scales: {
                     yAxes: [{
                         ticks: {
-                            suggestedMin: 0,
-                            suggestedMax: 100
+                            suggestedMin: min_y_val,
+                            suggestedMax: max_y_val
                         },
                         scaleLabel: {
                             display: true,
@@ -112,8 +142,8 @@ class UI_sctr{
                     }],
                     xAxes: [{
                         ticks: {
-                            suggestedMin: 0,
-                            suggestedMax: 100
+                            suggestedMin: min_x_val,
+                            suggestedMax: max_x_val
                         },
                         scaleLabel: {
                             display: true,
