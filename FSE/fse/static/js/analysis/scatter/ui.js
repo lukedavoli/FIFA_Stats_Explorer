@@ -71,13 +71,7 @@ class UI_sctr{
                 if(statpair['x'] < min_x_val){
                     min_x_val = statpair['x'];
                 }
-                if(statpair['x'] > max_x_val){
-                    max_x_val = statpair['x'];
-                }
                 if(statpair['y'] < min_y_val){
-                    min_y_val = statpair['y'];
-                }
-                if(statpair['y'] > max_x_val){
                     min_y_val = statpair['y'];
                 }
                 stats.push(statpair);
@@ -86,14 +80,10 @@ class UI_sctr{
 
         if(!focused){
             min_x_val = 0;
-            max_x_val = 100;
             min_y_val = 0;
-            max_y_val = 100;
         }else{
-            min_x_val = min_x_val - 10;
-            max_x_val = max_x_val + 10;
-            min_y_val = min_y_val - 10;
-            max_y_val = max_y_val + 10;
+            min_x_val = min_x_val - 5;
+            min_y_val = min_y_val - 5;
         }
         
         if(window.mychart_sctr) mychart_sctr.destroy();
@@ -132,7 +122,7 @@ class UI_sctr{
                     yAxes: [{
                         ticks: {
                             suggestedMin: min_y_val,
-                            suggestedMax: max_y_val
+                            suggestedMax: 100
                         },
                         scaleLabel: {
                             display: true,
@@ -143,7 +133,7 @@ class UI_sctr{
                     xAxes: [{
                         ticks: {
                             suggestedMin: min_x_val,
-                            suggestedMax: max_x_val
+                            suggestedMax: 100
                         },
                         scaleLabel: {
                             display: true,
