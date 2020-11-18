@@ -32,11 +32,11 @@ class UI_sctr{
     }
 
     updatePlayers_sctr(){
-        let players = JSON.parse(sessionStorage.getItem('players_sctr'));
+        let players = JSON.parse(sessionStorage.getItem('sctrChartPlayers'));
         this.players_sctr.innerHTML = "";
         if (players){
             players.forEach((player) => {
-                this.players_bar.innerHTML +=
+                this.players_sctr.innerHTML +=
                     `<li class="list-group-item">${player.info.type} ${player.info.knownas} (${player.info.rating})</li>`
             });   
         }

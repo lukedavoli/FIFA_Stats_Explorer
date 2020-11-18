@@ -35,7 +35,7 @@ class UI_bar{
     }
 
     updatePlayers_bar(){
-        let players = JSON.parse(sessionStorage.getItem('players_bar'));
+        let players = JSON.parse(sessionStorage.getItem('barChartPlayers'));
         this.players_bar.innerHTML = "";
         if (players){
             players.forEach((player) => {
