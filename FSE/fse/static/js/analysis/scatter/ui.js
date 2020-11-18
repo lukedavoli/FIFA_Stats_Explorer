@@ -5,6 +5,14 @@ class UI_sctr{
         this.dlPlayers_sctr = document.getElementById('players-list-sctr');
 
         this.summary_stats = ['DEF', 'DRI', 'SHO', 'PAS', 'PHY', 'PAC'];
+
+        this.backColors = []
+        let i = 0;
+        while(i < 15){
+            let x = 1 + i * 24
+            this.backColors.push(`hsla(${x}, 100%, 51%, 0.7)`);
+            i++;
+        }
     }
 
     updatePlayerOptions(players){
@@ -64,17 +72,25 @@ class UI_sctr{
             data: {
                 labels: labels,
                 datasets: [{
+                    fontSize: 24,
                     label: `${xstat} vs ${ystat}`,
-                    data: stats
+                    data: stats,
+                    pointBackgroundColor: this.backColors,
+                    pointRadius: 5
                 }]
             },
             options: {
                 tooltips: {
+                    bodyFontSize: 18,
+                    bodyFontStyle: 'bold',
+                    footerFontSize: 16,
+                    footerFontStyle: 'normal',
                     callbacks: {
                         label: function(tooltipItem, data) {
-                            var label = data.labels[tooltipItem.index];
-                            let tt = [`${label}`];
-                            tt.push(`${xstat}: ${tooltipItem.xLabel}`);
+                            return data.labels[tooltipItem.index];
+                        },
+                        footer: function(tooltipItem, data) {
+                            let tt = [`${xstat}: ${tooltipItem.xLabel}`];
                             tt.push(`${ystat}: ${tooltipItem.yLabel}`);
                             return tt;
                         }
@@ -83,10 +99,28 @@ class UI_sctr{
                     intersect: false
                 },
                 scales: {
-                    x: {
-                        type: 'linear',
-                        position: 'bottom'
-                    }
+                    yAxes: [{
+                        ticks: {
+                            suggestedMin: 0,
+                            suggestedMax: 100
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: ystat,
+                            fontSize: 20,
+                          }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            suggestedMin: 0,
+                            suggestedMax: 100
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: xstat,
+                            fontSize: 20,
+                          }
+                    }]
                 }
             }
         });
