@@ -25,6 +25,16 @@ Initial release. Functionality includes...
 
 ![bar chart](https://media.giphy.com/media/a3nJPz5dCimEGnO6bi/giphy.gif)
 
+### v0.2
+Additional plotting methods...
+
+* Scatterplot for two stats on any number of players
+
+![scatterplot](https://media.giphy.com/media/VAdQxe2uKxFEg7FNJ8/giphy.gif)
+
+* Radar chart for up to 9 stats on 1, 2 or 3 players
+
+![radar](https://media.giphy.com/media/xQTFCWC88QsM0LjheD/giphy.gif)
 
 ## Developement Environment
 * OS: Windows 10, 64-bit
