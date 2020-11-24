@@ -114,7 +114,12 @@ class UI_rdr{
             },
             options: {
                 tooltips: {
-                    bodyFontSize: 18,
+                    bodyFontSize: 14,
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            return data.datasets[tooltipItem.datasetIndex].label + ' : ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                        }
+                    },
                 },
                 scale: {
                     ticks: {
