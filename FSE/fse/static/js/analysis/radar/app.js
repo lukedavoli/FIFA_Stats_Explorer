@@ -1,7 +1,8 @@
 const ui_rdr = new UI_rdr;
 const requests_rdr = new Requests;
 
-const players_search_rdr = document.getElementById('players-search-rdr')
+const players_search_rdr = document.getElementById('players-search-rdr');
+const stats_selection_rdr = document.getElementById('stats-selection-rdr');
 const player1_rdr = document.getElementById('player-search1-rdr');
 const player2_rdr = document.getElementById('player-search2-rdr');
 const player3_rdr = document.getElementById('player-search3-rdr');
@@ -43,6 +44,7 @@ function searchPlayers(e){
         }else{
             sessionStorage.removeItem(`rdrChartPlayer3`);
         }
+        ui_rdr.updateChart_rdr(stat_boxes);
     }
 }
 
@@ -65,3 +67,7 @@ function playerChosen(e){
         });
     }
 }
+
+stats_selection_rdr.addEventListener('select', (e) => {
+    ui_rdr.updateChart_rdr(stat_boxes);
+});
