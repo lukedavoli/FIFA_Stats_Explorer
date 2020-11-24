@@ -68,6 +68,6 @@ function playerChosen(e){
     }
 }
 
-stats_selection_rdr.addEventListener('select', (e) => {
+stats_selection_rdr.addEventListener('focusout', (e) => {
     ui_rdr.updateChart_rdr(stat_boxes);
 });
