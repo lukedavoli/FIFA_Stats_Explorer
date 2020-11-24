@@ -102,18 +102,9 @@ class UI_sctr{
             options: {
                 tooltips: {
                     bodyFontSize: 18,
-                    bodyFontStyle: 'bold',
-                    footerFontSize: 16,
-                    footerFontStyle: 'normal',
                     callbacks: {
-                        label: function(tooltipItem, data) {
-                            return data.labels[tooltipItem.index];
-                        },
-                        footer: function(tooltipItem, data) {
-                            let tt = [`${xstat}: ${tooltipItem.xLabel}`];
-                            tt.push(`${ystat}: ${tooltipItem.yLabel}`);
-                            return tt;
-                        }
+                        label: (tooltipItem, data) => `${data.labels[tooltipItem.index]}`,
+                        afterLabel: (tooltipItem, data) => [`${xstat}: ${tooltipItem.xLabel}`, `${ystat}: ${tooltipItem.yLabel}`]
                     },
                     mode: 'nearest',
                     intersect: false
