@@ -4,6 +4,7 @@ const requests_rdr = new Requests;
 const players_search_rdr = document.getElementById('players-search-rdr')
 const player1_rdr = document.getElementById('player-search1-rdr');
 const player2_rdr = document.getElementById('player-search2-rdr');
+const player3_rdr = document.getElementById('player-search3-rdr');
 const stat_boxes = [document.getElementById('stat1-select-rdr'),
                    document.getElementById('stat2-select-rdr'),
                    document.getElementById('stat3-select-rdr'),
@@ -18,8 +19,12 @@ window.addEventListener('load', (e) => {
     stat_boxes[0].value = 'PAC';
     stat_boxes[1].value = 'DRI';
     stat_boxes[2].value = 'SHO';
-    sessionStorage.removeItem(`rdrChartPlayer1`);
-    sessionStorage.removeItem(`rdrChartPlayer2`);
+    let p1 = JSON.parse(sessionStorage.getItem('rdrChartPlayer1'));
+    let p2 = JSON.parse(sessionStorage.getItem('rdrChartPlayer2'));
+    let p3 = JSON.parse(sessionStorage.getItem('rdrChartPlayer3'));
+    player1_rdr.value = `${p1.info.type} ${p1.info.knownas}`;
+    player2_rdr.value = `${p2.info.type} ${p2.info.knownas}`;
+    player3_rdr.value = `${p3.info.type} ${p3.info.knownas}`;
     ui_rdr.updateChart_rdr(stat_boxes);
 });
 
@@ -33,8 +38,10 @@ function searchPlayers(e){
     }else{
         if(e.target.id == 'player-search1-rdr'){
             sessionStorage.removeItem(`rdrChartPlayer1`);
-        }else{
+        }else if(e.target.id == 'player-search2-rdr'){
             sessionStorage.removeItem(`rdrChartPlayer2`);
+        }else{
+            sessionStorage.removeItem(`rdrChartPlayer3`);
         }
     }
 }
@@ -48,8 +55,10 @@ function playerChosen(e){
             
             if(e.target.id == 'player-search1-rdr'){
                 sessionStorage.setItem(`rdrChartPlayer1`, JSON.stringify(data));
-            }else{
+            }else if(e.target.id == 'player-search2-rdr'){
                 sessionStorage.setItem(`rdrChartPlayer2`, JSON.stringify(data));
+            }else{
+                sessionStorage.setItem(`rdrChartPlayer3`, JSON.stringify(data));
             }
 
             ui_rdr.updateChart_rdr(stat_boxes);
