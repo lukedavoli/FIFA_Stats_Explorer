@@ -13,6 +13,12 @@ class UI_sctr{
             this.backColors.push(`hsla(${x}, 100%, 51%, 0.7)`);
             i++;
         }
+        i = 0;
+        while(i < 14){
+            let x = 12 + i * 24
+            this.backColors.push(`hsla(${x}, 100%, 51%, 0.7)`);
+            i++;
+        }
     }
 
     updatePlayerOptions(players){
@@ -101,7 +107,8 @@ class UI_sctr{
             },
             options: {
                 tooltips: {
-                    bodyFontSize: 18,
+                    bodyFontSize: 14,
+                    footerFontStyle: 'normal',
                     callbacks: {
                         label: (tooltipItem, data) => `${data.labels[tooltipItem.index]}`,
                         afterLabel: (tooltipItem, data) => [`${xstat}: ${tooltipItem.xLabel}`, `${ystat}: ${tooltipItem.yLabel}`]
