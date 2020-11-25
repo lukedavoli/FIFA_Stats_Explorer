@@ -18,6 +18,7 @@ class UI_bar{
                         'rgba(15, 15, 255, 0.5)', 'rgba(255, 15, 255, 0.5)']
     }
 
+    // As the search term is updated, update the list of players available to choose from in the dropdown
     updatePlayerOptions(players){
         this.dlPlayers_bar.innerHTML = "";
         players.forEach((player) => {
@@ -26,14 +27,17 @@ class UI_bar{
         });
     }
 
+    // Empty player options
     emptyPlayerOptions(){
         this.dlPlayers_bar.innerHTML = "";
     }
 
+    // Clear any given field
     clearField(field){
         field.value = "";
     }
 
+    // Update the players shown to be present in the bar chart
     updatePlayers_bar(){
         let players = JSON.parse(sessionStorage.getItem('barChartPlayers'));
         this.players_bar.innerHTML = "";
@@ -45,21 +49,25 @@ class UI_bar{
         }
     }
 
+    // Warn the user when they have reached the 8 player limit in the bar chart
     displayMaxPlayersWarning(){
         this.maxPlayers_bar.className = "failed";
         this.maxPlayers_bar.innerHTML = "Maximum 8 players in bar chart";
         setTimeout(this.clearWarning, 5000);
     }
     
+    // Remove the warning label
     clearWarning(){
         this.maxPlayers_bar.innerHTML = "";
     }
 
+    // Re-draw the chart
     updateChart_bar(stat, focused){
         let players = JSON.parse(sessionStorage.getItem('barChartPlayers'));
         let labels = [];
         let stats = [];
 
+        // For each player add a label to the list of labels and add statistic of concern to the list of stats
         if (players){
             players.forEach((player) => {
                 labels.push(`${player.info.type} ${player.info.knownas}`);
@@ -71,6 +79,7 @@ class UI_bar{
             }); 
         }
 
+        // Find the minimum and maximum value of the stats for dynamic resizing of the graph
         let min_val;
         let max_val;
         if(focused){

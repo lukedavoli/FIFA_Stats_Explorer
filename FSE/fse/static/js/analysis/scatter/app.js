@@ -15,10 +15,7 @@ window.addEventListener('load', (e) => {
     ui_sctr.updateChart_sctr(chosenStatX_sctr.value, chosenStatY_sctr.value, axisToggle_sctr.checked);
 });
 
-/*********************************
- - Search the database for players
- - Add player to current analysis
- *********************************/
+// Search the database for players
 playerSearch_sctr.addEventListener('keyup', (e) => {
     const searchTerm = playerSearch_sctr.value;
     if(searchTerm && searchTerm.trim().length){
@@ -30,6 +27,7 @@ playerSearch_sctr.addEventListener('keyup', (e) => {
     }
 });
 
+// Add players in the plot to session storage
 function addPlayerToSctrSS(data){
     let existingPlayers = JSON.parse(sessionStorage.getItem(`sctrChartPlayers`));
     if(existingPlayers == null) existingPlayers = [];
@@ -38,6 +36,7 @@ function addPlayerToSctrSS(data){
     sessionStorage.setItem(`sctrChartPlayers`, JSON.stringify(existingPlayers));
 }
 
+// Add chosen player from search dropdown to session storage and update graph
 playerSearch_sctr.addEventListener('select', (e) => {
     const playerId = playerSearch_sctr.value;
     ui_sctr.clearField(playerSearch_sctr);
@@ -52,29 +51,24 @@ playerSearch_sctr.addEventListener('select', (e) => {
     });
 });
 
-/*************************
- - Change chosen statistic
- *************************/
+// Change the chosen statistic for the x-axis
 chosenStatX_sctr.addEventListener('input', (e) => {
     ui_sctr.updateChart_sctr(chosenStatX_sctr.value, chosenStatY_sctr.value, axisToggle_sctr.checked);
 });
 
+// Change the chosen statistic for the y-axis
 chosenStatY_sctr.addEventListener('input', (e) => {
     ui_sctr.updateChart_sctr(chosenStatX_sctr.value, chosenStatY_sctr.value, axisToggle_sctr.checked);
 });
 
-/****************************
- - Clear players in chart
- ***************************/
+// Clear the players in the chart
 clearPlayers_sctr.addEventListener('click', (e) => {
     sessionStorage.removeItem('sctrChartPlayers');
     ui_sctr.updatePlayers_sctr();
     ui_sctr.updateChart_sctr(chosenStatX_sctr.value, chosenStatY_sctr.value, axisToggle_sctr.checked);
 });
 
-/*******************
- - Toggle axis scale
- ******************/
+// Toggle the axis scale
 axisToggle_sctr.addEventListener('change', (e) => {
     ui_sctr.updateChart_sctr(chosenStatX_sctr.value, chosenStatY_sctr.value, axisToggle_sctr.checked);
 });
