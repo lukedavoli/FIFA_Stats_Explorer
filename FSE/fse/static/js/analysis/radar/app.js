@@ -16,6 +16,7 @@ const stat_boxes = [document.getElementById('stat1-select-rdr'),
                    document.getElementById('stat8-select-rdr'),
                    document.getElementById('stat9-select-rdr'),]
 
+
 window.addEventListener('load', (e) => {
     stat_boxes[0].value = 'PAC';
     stat_boxes[1].value = 'DRI';
@@ -29,6 +30,8 @@ window.addEventListener('load', (e) => {
     ui_rdr.updateChart_rdr(stat_boxes);
 });
 
+
+// On each keystroke get the players by name matching the search term and update the options
 players_search_rdr.addEventListener('keyup', searchPlayers);
 function searchPlayers(e){
     const searchTerm = e.target.value;
@@ -48,6 +51,7 @@ function searchPlayers(e){
     }
 }
 
+// Add the chosen player to the session storage and update the chart
 players_search_rdr.addEventListener('select', playerChosen);
 function playerChosen(e){
     const playerId = e.target.value;
@@ -68,6 +72,7 @@ function playerChosen(e){
     }
 }
 
+// Update the chart when the stat boxes lose focus or a new stat is selected
 stats_selection_rdr.addEventListener('focusout', (e) => {
     ui_rdr.updateChart_rdr(stat_boxes);
 });

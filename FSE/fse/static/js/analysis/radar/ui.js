@@ -8,6 +8,7 @@ class UI_rdr{
         this.summary_stats = ['DEF', 'DRI', 'SHO', 'PAS', 'PHY', 'PAC'];
     }
 
+    // Update the player options list for the appropriate player box
     updatePlayerOptions(element, players){
         let dl = null;
         if(element.id == 'player-search1-rdr'){
@@ -24,6 +25,8 @@ class UI_rdr{
         });
     }
 
+
+    // Redraw the chart
     updateChart_rdr(stat_boxes){
         let labels = []
         let p1 = []
@@ -36,6 +39,7 @@ class UI_rdr{
         let max = 0;
         let nxtStat = null;
         
+        // Collect the stats necessary for each player
         stat_boxes.forEach(stat_box => {
             if(stat_box.value){
                 const stat = stat_box.value;

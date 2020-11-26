@@ -4,6 +4,7 @@ class UI{
         this.requestStatus = document.getElementById('requestStatus');
     }
 
+    // Update the user with the status of the request when adding a new player to the database
     updateRequestStatus(status){
         if(status === 'inprogress'){
             this.requestStatus.className = "inprogress";
@@ -19,10 +20,12 @@ class UI{
         }
     }
 
+    // Clear the "adding player to database/player added to database" status label
     clearStatus(){
         this.requestStatus.innerHTML = "";
     }
 
+    //Add players returned by request to the results table as table rows
     updatePlayersTable(players){
         this.playersTableBody.innerHTML = "";
         players.forEach((player) => {

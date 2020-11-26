@@ -14,10 +14,7 @@ window.addEventListener('load', (e) => {
 });
 
 
-/*********************************
- - Search the database for players
- - Add player to current analysis
- *********************************/
+// Search the database for players
 playerSearch_bar.addEventListener('keyup', (e) => {
     const searchTerm = playerSearch_bar.value;
     if(searchTerm && searchTerm.trim().length){
@@ -29,6 +26,7 @@ playerSearch_bar.addEventListener('keyup', (e) => {
     }
 });
 
+// Store a player in session storage
 function addPlayerToBarSS(data){
     let existingPlayers = JSON.parse(sessionStorage.getItem(`barChartPlayers`));
     if(existingPlayers == null) existingPlayers = [];
@@ -37,6 +35,8 @@ function addPlayerToBarSS(data){
     sessionStorage.setItem(`barChartPlayers`, JSON.stringify(existingPlayers));
 }
 
+
+// Add a player to the chart when selected from the dropdown
 playerSearch_bar.addEventListener('select', (e) => {
     const playerId = playerSearch_bar.value;
     ui_bar.clearField(playerSearch_bar);
@@ -56,17 +56,13 @@ playerSearch_bar.addEventListener('select', (e) => {
 });
 
 
-/*************************
- - Change chosen statistic
- *************************/
+// Change chosen statistic
 chosenStat_bar.addEventListener('input', (e) => {
     ui_bar.updateChart_bar(chosenStat_bar.value, axisToggle_bar.checked);
 });
 
 
-/****************************
- - Clear players in chart
- ***************************/
+// Clear players in chart
 clearPlayers_bar.addEventListener('click', (e) => {
     sessionStorage.removeItem('barChartPlayers');
     ui_bar.updatePlayers_bar();
@@ -74,9 +70,7 @@ clearPlayers_bar.addEventListener('click', (e) => {
 });
 
 
-/*******************
- - Toggle axis scale
- ******************/
+// Toggle axis scale
 axisToggle_bar.addEventListener('change', (e) => {
     ui_bar.updateChart_bar(chosenStat_bar.value, axisToggle_bar.checked)
 });

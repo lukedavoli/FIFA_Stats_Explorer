@@ -6,6 +6,9 @@ class UI_sctr{
 
         this.summary_stats = ['DEF', 'DRI', 'SHO', 'PAS', 'PHY', 'PAC'];
 
+        // Generate colours to use for the plot points
+        // First make 15 colours with a hue 24 points apart, then 14 more beginning at 12 rather than 1
+        // Probably the best way to have a nice looking colour scheme while also ensuring colours are distinct
         this.backColors = []
         let i = 0;
         while(i < 15){
@@ -21,6 +24,7 @@ class UI_sctr{
         }
     }
 
+    // Update the player options in the dropdown
     updatePlayerOptions(players){
         this.dlPlayers_sctr.innerHTML = "";
         players.forEach((player) => {
@@ -29,14 +33,17 @@ class UI_sctr{
         });
     }
 
+    // Empty the player options dropdown
     emptyPlayerOptions(){
         this.dlPlayers_sctr.innerHTML = "";
     }
 
+    // Clear any given field
     clearField(field){
         field.value = "";
     }
 
+    // Update the players listed as being in the current plot
     updatePlayers_sctr(){
         let players = JSON.parse(sessionStorage.getItem('sctrChartPlayers'));
         this.players_sctr.innerHTML = "";
@@ -48,6 +55,7 @@ class UI_sctr{
         }
     }
 
+    // Re-draw the chart as needed
     updateChart_sctr(xstat, ystat, focused){
         let players = JSON.parse(sessionStorage.getItem('sctrChartPlayers'));
         let labels = [];
