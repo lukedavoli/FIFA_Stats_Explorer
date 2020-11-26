@@ -13,9 +13,8 @@ Websites like FUTWIZ and Futhead provide information on in-game statistics of al
 
 This simple app solves this problem by providing a quick and easy way to visualise and compare player statistics at a larger scale in a bar-chart, scatterplot or radar-chart with many players at once or many statistics at once.
 
-## Changelog
-### v0.1
-Initial release. Functionality includes... 
+## Features
+Functionality includes... 
 * adding players to an SQLite database using FUTWIZ url
 * searching the database by player name
 
@@ -24,9 +23,6 @@ Initial release. Functionality includes...
 * interactive bar chart analysis of players in database 
 
 ![bar chart](https://media.giphy.com/media/a3nJPz5dCimEGnO6bi/giphy.gif)
-
-### v0.2
-Additional plotting methods...
 
 * Scatterplot for two stats on any number of players
 
