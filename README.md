@@ -36,6 +36,3 @@ Functionality includes...
 * OS: Windows 10, 64-bit
 * Language: Python 3.8.5
 * Web Framework: Flask 1.1.2
-
-## Installation
-I'll detail installation instructions once the project is fully complete. 
