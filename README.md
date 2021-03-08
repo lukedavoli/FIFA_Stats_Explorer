@@ -1,4 +1,4 @@
-# Fifa Stats Explorer
+# FIFA Stats Explorer
 
 ## Focus Topics
 * Python, HTML/CSS/Javascript
