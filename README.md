@@ -4,6 +4,7 @@
 * Python, HTML/CSS/Javascript
 * REST API and front-end development (Flask)
 * Web-scraping (BeautifulSoup)
+* SQLite DB management
 * Plotting in the browser (Chart.js)
 
 ## Overview
