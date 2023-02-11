@@ -1,5 +1,7 @@
 # FIFA Stats Explorer
 
+*Unfortunately, due to the system's reliance on scraping the FUTWIZ website during FIFA 21's currency, the tool is no longer functional. Please enjoy the below GIF demos of the tool in use and dig into the code to see more.* :smile:
+
 ## Focus Topics
 * Python, HTML/CSS/Javascript
 * REST API and front-end development (Flask)
